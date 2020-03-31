@@ -21,13 +21,4 @@ export class AuthController {
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(authCredentialsDto);
   }
-
-  @Get('/online')
-  async test() {
-    const entityManager = getManager();
-    const rawData = await entityManager.query(
-      `SELECT * FROM ubigeo_peru_departments`,
-    );
-    return rawData;
-  }
 }
