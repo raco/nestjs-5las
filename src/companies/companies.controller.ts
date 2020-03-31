@@ -28,7 +28,7 @@ export class CompaniesController {
   }
 
   @Get('/byDistrict/:district_id')
-  companies(@Query('district_id', ParseIntPipe) district_id: number) {
+  companies(@Param('district_id', ParseIntPipe) district_id: number) {
     return this.companiesService.getCompaniesByDistrict(district_id);
   }
 }
