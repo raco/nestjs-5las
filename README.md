@@ -1,75 +1,46 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+- lima 15
+- 1501 lima
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+150101 Lima 1501 15
+150102 Ancón 1501 15
+150103 Ate 1501 15
+150104 Barranco 1501 15
+150105 Breña 1501 15
+150106 Carabayllo 1501 15
+150107 Chaclacayo 1501 15
+150108 Chorrillos 1501 15
+150109 Cieneguilla 1501 15
+150110 Comas 1501 15
+150111 El Agustino 1501 15
+150112 Independencia 1501 15
+150113 Jesús María 1501 15
+150114 La Molina 1501 15
+150115 La Victoria 1501 15
+150116 Lince 1501 15
+150117 Los Olivos 1501 15
+150118 Lurigancho 1501 15
+150119 Lurin 1501 15
+150120 Magdalena del Mar 1501 15
+150121 Pueblo Libre 1501 15
+150122 Miraflores 1501 15
+150123 Pachacamac 1501 15
+150124 Pucusana 1501 15
+150125 Puente Piedra 1501 15
+150126 Punta Hermosa 1501 15
+150127 Punta Negra 1501 15
+150128 Rímac 1501 15
+150129 San Bartolo 1501 15
+150130 San Borja 1501 15
+150131 San Isidro 1501 15
+150132 San Juan de Lurigancho 1501 15
+150133 San Juan de Miraflores 1501 15
+150134 San Luis 1501 15
+150135 San Martín de Porres 1501 15
+150136 San Miguel 1501 15
+150137 Santa Anita 1501 15
+150138 Santa María del Mar 1501 15
+150139 Santa Rosa 1501 15
+150140 Santiago de Surco 1501 15
+150141 Surquillo 1501 15
+150142 Villa El Salvador 1501 15
+150143 Villa María del Triunfo 1501 15

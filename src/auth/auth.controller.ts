@@ -2,6 +2,7 @@ import { Controller, Post, Body, ValidationPipe, Get } from '@nestjs/common';
 import { UserRegisterDto } from './dto/user-register.dto';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-crendentials.dto';
+import { getManager } from 'typeorm';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +23,11 @@ export class AuthController {
   }
 
   @Get('/online')
-  test() {
-    return 'true!';
+  async test() {
+    const entityManager = getManager();
+    const rawData = await entityManager.query(
+      `SELECT * FROM ubigeo_peru_departments`,
+    );
+    return rawData;
   }
 }
