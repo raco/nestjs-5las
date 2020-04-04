@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { getManager } from 'typeorm';
 import { CompaniesService } from './companies.service';
-import QRCode from 'qrcode';
+import * as QRCode from 'qrcode';
 
 @Controller('companies')
 export class CompaniesController {
