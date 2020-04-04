@@ -30,6 +30,6 @@ export class TicketRepository extends Repository<Ticket> {
       }
     }
 
-    return QRCode.toDataURL(bcrypt.hash(id, dni, ticket.salt));
+    return QRCode.toDataURL(bcrypt.hash(`${id}${dni}`, ticket.salt));
   }
 }
