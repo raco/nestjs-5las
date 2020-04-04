@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BranchRepository } from './branch.repository';
 import { ScheduleRepository } from './schedule.repository';
 import { AuthModule } from 'src/auth/auth.module';
-import { TurnRepository } from './turn.repository';
 
 @Module({
   imports: [
@@ -19,6 +18,5 @@ import { TurnRepository } from './turn.repository';
   ],
   controllers: [CompaniesController],
   providers: [CompaniesService],
-  exports: [TurnRepository],
 })
 export class CompaniesModule {}
