@@ -29,7 +29,7 @@ export class TicketRepository extends Repository<Ticket> {
         throw new InternalServerErrorException();
       }
     }
-
-    return QRCode.toDataURL(await bcrypt.hash(id, dni, ticket.salt));
+    const qrHash = await bcrypt.hash(`${id}${dni}`, ticket.salt);
+    return QRCode.toDataURL(qrHash);
   }
 }
