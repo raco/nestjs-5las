@@ -4,9 +4,16 @@ import { CompaniesService } from './companies.service';
 import { CompanyRepository } from './company.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BranchRepository } from './branch.repository';
+import { ScheduleRepository } from './schedule.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CompanyRepository, BranchRepository])],
+  imports: [
+    TypeOrmModule.forFeature([
+      CompanyRepository,
+      BranchRepository,
+      ScheduleRepository,
+    ]),
+  ],
   controllers: [CompaniesController],
   providers: [CompaniesService],
 })

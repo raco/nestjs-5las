@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { Company } from './company.entity';
+import { Schedule } from './schedule.entity';
 
 @Entity()
 export class Branch extends BaseEntity {
@@ -36,4 +38,11 @@ export class Branch extends BaseEntity {
     { eager: false },
   )
   company: Company;
+
+  @OneToMany(
+    type => Schedule,
+    schedule => schedule.branch,
+    { eager: false },
+  )
+  schedules: Schedule[];
 }

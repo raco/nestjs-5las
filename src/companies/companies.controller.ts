@@ -31,4 +31,9 @@ export class CompaniesController {
   companies(@Param('district_id', ParseIntPipe) district_id: number) {
     return this.companiesService.getCompaniesByDistrict(district_id);
   }
+
+  @Get('/schedule/:branchId')
+  schedule(@Param('branchId', ParseIntPipe) branchId: number) {
+    return this.companiesService.getSchedule(branchId);
+  }
 }
