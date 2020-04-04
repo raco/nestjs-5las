@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { getManager } from 'typeorm';
 import { CompaniesService } from './companies.service';
+import QRCode from 'qrcode';
 
 @Controller('companies')
 export class CompaniesController {
@@ -35,5 +36,10 @@ export class CompaniesController {
   @Get('/branch/:branchId/schedule')
   schedule(@Param('branchId', ParseIntPipe) branchId: number) {
     return this.companiesService.getSchedule(branchId);
+  }
+
+  @Get('/qr')
+  async qr() {
+    return await QRCode.toDataURL('text');
   }
 }
