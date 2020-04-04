@@ -20,6 +20,6 @@ export class TicketsService {
     if (!turn) {
       throw new NotFoundException();
     }
-    return this.ticketRepository.generateQRCode(turn, user);
+    return this.ticketRepository.generateTicketAndQRCode(turn, user);
   }
 }
