@@ -5,10 +5,11 @@ import {
   ParseIntPipe,
   Query,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { getManager } from 'typeorm';
 import { CompaniesService } from './companies.service';
-import * as QRCode from 'qrcode';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('companies')
 export class CompaniesController {
@@ -29,17 +30,14 @@ export class CompaniesController {
   }
 
   @Get('/byDistrict/:district_id')
+  @UseGuards(AuthGuard())
   companies(@Param('district_id', ParseIntPipe) district_id: number) {
     return this.companiesService.getCompaniesByDistrict(district_id);
   }
 
   @Get('/branch/:branchId/schedule')
+  @UseGuards(AuthGuard())
   schedule(@Param('branchId', ParseIntPipe) branchId: number) {
     return this.companiesService.getSchedule(branchId);
-  }
-
-  @Get('/qr')
-  async qr() {
-    return await QRCode.toDataURL('text');
   }
 }

@@ -4,8 +4,10 @@ import {
   Column,
   Entity,
   Unique,
+  OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Ticket } from 'src/tickets/ticket.entity';
 
 @Entity()
 @Unique(['email', 'dni'])
@@ -33,6 +35,13 @@ export class User extends BaseEntity {
 
   @Column()
   salt: string;
+
+  @OneToMany(
+    type => Ticket,
+    ticket => ticket.user,
+    { eager: false },
+  )
+  tickets: Ticket[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

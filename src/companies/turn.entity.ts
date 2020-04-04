@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { Schedule } from './schedule.entity';
+import { Ticket } from 'src/tickets/ticket.entity';
 
 @Entity()
 export class Turn extends BaseEntity {
@@ -33,4 +35,11 @@ export class Turn extends BaseEntity {
     { eager: false },
   )
   schedule: Schedule;
+
+  @OneToMany(
+    type => Ticket,
+    ticket => ticket.turn,
+    { eager: false },
+  )
+  tickets: Ticket[];
 }
