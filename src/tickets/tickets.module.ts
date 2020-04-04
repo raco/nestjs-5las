@@ -10,6 +10,5 @@ import { AuthModule } from 'src/auth/auth.module';
   imports: [TypeOrmModule.forFeature([TicketRepository]), AuthModule],
   controllers: [TicketsController],
   providers: [TicketsService],
-  exports: [Ticket],
 })
 export class TicketsModule {}
