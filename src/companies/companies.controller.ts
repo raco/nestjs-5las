@@ -32,7 +32,7 @@ export class CompaniesController {
     return this.companiesService.getCompaniesByDistrict(district_id);
   }
 
-  @Get('/schedule/:branchId')
+  @Get('/branch/:branchId/schedule')
   schedule(@Param('branchId', ParseIntPipe) branchId: number) {
     return this.companiesService.getSchedule(branchId);
   }
