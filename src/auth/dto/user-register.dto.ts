@@ -24,6 +24,11 @@ export class UserRegisterDto {
   dni: string;
 
   @IsString()
+  @MinLength(1)
+  @MaxLength(1)
+  gender: string;
+
+  @IsString()
   @MinLength(4)
   @MaxLength(200)
   @IsEmail()
