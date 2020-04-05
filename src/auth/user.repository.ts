@@ -16,6 +16,7 @@ export class UserRepository extends Repository<User> {
       fullname,
       address,
       dni,
+      gender,
       email,
       password,
       district_id,
@@ -25,6 +26,7 @@ export class UserRepository extends Repository<User> {
     user.fullname = fullname;
     user.address = address;
     user.dni = dni;
+    user.gender = gender;
     user.email = email;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
