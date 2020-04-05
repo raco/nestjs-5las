@@ -10,7 +10,8 @@ import * as bcrypt from 'bcrypt';
 import { Ticket } from 'src/tickets/ticket.entity';
 
 @Entity()
-@Unique(['email', 'dni'])
+@Unique(['email'])
+@Unique(['dni'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
