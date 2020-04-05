@@ -26,6 +26,9 @@ export class User extends BaseEntity {
   address: string;
 
   @Column()
+  gender: string;
+
+  @Column()
   district_id: number;
 
   @Column()
