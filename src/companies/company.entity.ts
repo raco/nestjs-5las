@@ -15,9 +15,6 @@ export class Company extends BaseEntity {
   id: number;
 
   @Column()
-  district_id: number;
-
-  @Column()
   name: string;
 
   @Column()

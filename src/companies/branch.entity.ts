@@ -30,6 +30,9 @@ export class Branch extends BaseEntity {
   phone: string;
 
   @Column()
+  district_id: number;
+
+  @Column()
   open: boolean;
 
   @ManyToOne(

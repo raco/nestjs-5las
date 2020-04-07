@@ -3,6 +3,7 @@ import { Company } from './company.entity';
 import { CompanyRepository } from './company.repository';
 import { Schedule } from './schedule.entity';
 import { ScheduleRepository } from './schedule.repository';
+import { createQueryBuilder } from 'typeorm';
 
 @Injectable()
 export class CompaniesService {
@@ -11,8 +12,13 @@ export class CompaniesService {
     private scheduleRepository: ScheduleRepository,
   ) {}
 
-  async getCompaniesByDistrict(district_id: number): Promise<Company[]> {
-    const found = await this.companyRepository.find({ where: { district_id } });
+  async getCompaniesByDistrict(district_id: number): Promise<any> {
+    const found = await createQueryBuilder('company')
+      .leftJoinAndSelect('company.branches', 'branch')
+      .where('branch.district_id = :district_id', { district_id })
+      .getOne();
+
+    // const found = await this.companyRepository.find({ where: { district_id } });
     if (!found) {
       throw new NotFoundException();
     }
