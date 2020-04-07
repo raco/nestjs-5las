@@ -35,11 +35,11 @@ export class UserRegisterDto {
   email: string;
 
   @IsString()
-  @MinLength(8)
+  @MinLength(6)
   @MaxLength(40)
-  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'Password is too weak',
-  })
+  // @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+  //   message: 'Password is too weak',
+  // })
   password: string; // Mayuscula, numero y caracterespecial
 
   @IsNumber()

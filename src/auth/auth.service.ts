@@ -6,6 +6,7 @@ import { UserRepository } from './user.repository';
 import { UserRegisterDto } from './dto/user-register.dto';
 import { AuthCredentialsDto } from './dto/auth-crendentials.dto';
 import { JwtPayload } from './jwt-payload.interface';
+import { getManager } from 'typeorm';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +30,16 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const payload: JwtPayload = { email: user.email };
+    const entityManager = getManager();
+    const rawData = await entityManager.query(
+      `SELECT id, name FROM ubigeo_peru_districts WHERE id = ${user.district_id}`,
+    );
+
+    const payload: JwtPayload = {
+      email: user.email,
+      fullname: user.fullname,
+      district: rawData,
+    };
     const accessToken = await this.jwtService.sign(payload);
 
     return { accessToken };
