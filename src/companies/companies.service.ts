@@ -18,7 +18,7 @@ export class CompaniesService {
       .createQueryBuilder('company')
       .leftJoinAndSelect('company.branches', 'branch')
       .where('branch.district_id = :district_id', { district_id })
-      .getOne();
+      .getMany();
 
     // const found = await this.companyRepository.find({ where: { district_id } });
     if (!found) {
