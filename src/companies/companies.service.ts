@@ -3,17 +3,19 @@ import { Company } from './company.entity';
 import { CompanyRepository } from './company.repository';
 import { Schedule } from './schedule.entity';
 import { ScheduleRepository } from './schedule.repository';
-import { createQueryBuilder } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CompaniesService {
   constructor(
+    @InjectRepository(CompanyRepository)
     private companyRepository: CompanyRepository,
     private scheduleRepository: ScheduleRepository,
   ) {}
 
   async getCompaniesByDistrict(district_id: number): Promise<any> {
-    const found = await createQueryBuilder('company')
+    const found = this.companyRepository
+      .createQueryBuilder('company')
       .leftJoinAndSelect('company.branches', 'branch')
       .where('branch.district_id = :district_id', { district_id })
       .getOne();
