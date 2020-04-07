@@ -38,7 +38,7 @@ export class AuthService {
     const payload: JwtPayload = {
       email: user.email,
       fullname: user.fullname,
-      district: rawData,
+      district: rawData[0],
     };
     const accessToken = await this.jwtService.sign(payload);
 
