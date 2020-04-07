@@ -14,7 +14,7 @@ export class CompaniesService {
   ) {}
 
   async getCompaniesByDistrict(district_id: number): Promise<any> {
-    const found = this.companyRepository
+    const found = await this.companyRepository
       .createQueryBuilder('company')
       .leftJoinAndSelect('company.branches', 'branch')
       .where('branch.district_id = :district_id', { district_id })
