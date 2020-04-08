@@ -36,6 +36,7 @@ export class AuthService {
     );
 
     const payload: JwtPayload = {
+      dni: user.dni,
       email: user.email,
       fullname: user.fullname,
       district: rawData[0],
