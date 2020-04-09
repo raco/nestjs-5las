@@ -11,15 +11,18 @@ export class TicketsService {
     private turnRepository: TurnRepository,
   ) {}
 
-  async generateTicket(
-    generateTicketDto: GenerateTicketDto,
-    user: User,
-  ): Promise<string> {
+  async generateTicket(generateTicketDto: GenerateTicketDto, user: User): any {
     const { turnId } = generateTicketDto;
     const turn = await this.turnRepository.findOne({ where: { id: turnId } });
     if (!turn) {
       throw new NotFoundException();
     }
-    return this.ticketRepository.generateTicketAndQRCode(turn, user);
+    const base64QR = await this.ticketRepository.generateTicketAndQRCode(
+      turn,
+      user,
+    );
+    return {
+      qr: base64QR,
+    };
   }
 }
