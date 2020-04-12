@@ -31,22 +31,18 @@ export class TicketRepository extends Repository<Ticket> {
     const distict = await getManager().query(
       `SELECT name FROM ubigeo_peru_districts WHERE id = ${user.district_id}`,
     );
-    ticket.district = distict.name;
+    ticket.district = distict[0].name;
     ticket.turn = turn;
     ticket.salt = await bcrypt.genSalt();
     ticket.createdAt = new Date();
     const qrHash = await bcrypt.hash(`${turn.id}${user.dni}`, ticket.salt);
     ticket.qr = await QRCode.toDataURL(qrHash);
 
-    // try {
-    await ticket.save();
-    // } catch (error) {
-    //   if (error.code == 23505) {
-    //     throw new ConflictException('Duplication error');
-    //   } else {
-    //     throw new InternalServerErrorException();
-    //   }
-    // }
+    try {
+      await ticket.save();
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
 
     return ticket;
   }
