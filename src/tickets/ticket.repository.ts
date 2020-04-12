@@ -38,15 +38,15 @@ export class TicketRepository extends Repository<Ticket> {
     const qrHash = await bcrypt.hash(`${turn.id}${user.dni}`, ticket.salt);
     ticket.qr = await QRCode.toDataURL(qrHash);
 
-    try {
-      await ticket.save();
-    } catch (error) {
-      if (error.code == 23505) {
-        throw new ConflictException('Duplication error');
-      } else {
-        throw new InternalServerErrorException();
-      }
-    }
+    // try {
+    await ticket.save();
+    // } catch (error) {
+    //   if (error.code == 23505) {
+    //     throw new ConflictException('Duplication error');
+    //   } else {
+    //     throw new InternalServerErrorException();
+    //   }
+    // }
 
     return ticket;
   }
