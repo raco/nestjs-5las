@@ -1,4 +1,14 @@
-export const html: string = `
+import { Mailable } from '../interfaces/mail.interface';
+import { Ticket } from 'src/tickets/ticket.entity';
+
+export class TicketMail implements Mailable {
+  from = 'no-reply@5las.com';
+  to: string;
+  subject = 'Nuevo Ticket';
+  html: string;
+  constructor(ticket: Ticket) {
+    this.to = ticket.user.email;
+    this.html = `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -220,9 +230,9 @@ export const html: string = `
 											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 40px; padding-top: 15px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
 											<div style="color:#e20030;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:2;padding-top:15px;padding-right:10px;padding-bottom:10px;padding-left:40px;">
 												<div style="font-size: 12px; line-height: 2; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; color: #e20030; mso-line-height-alt: 24px;">
-													<p style="font-size: 20px; line-height: 2; word-break: break-word; text-align: left; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 40px; margin: 0;"><span style="font-size: 20px;"><span style="color: #ffffff; font-size: 20px; background-color: #17b9c4;"><strong><span style="background-color: #e20030;">HORARIO:</span></strong></span></span></p>
-													<p style="font-size: 20px; line-height: 2; word-break: break-word; text-align: left; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 40px; margin: 0;"><span style="font-size: 20px; background-color: #e20030;"><span style="font-size: 20px; background-color: #e20030;">&nbsp;</span><span style="color: #ffffff; font-size: 20px; background-color: #e20030;"><strong>LUGAR DE COMPRA:&nbsp;</strong></span></span></p>
-													<p style="font-size: 20px; line-height: 2; word-break: break-word; text-align: left; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 40px; margin: 0;"><span style="font-size: 20px; background-color: #e20030;"><span style="color: #ffffff; font-size: 20px; background-color: #e20030;">DISTRITO:&nbsp;</span></span></p>
+													<p style="font-size: 20px; line-height: 2; word-break: break-word; text-align: left; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 40px; margin: 0;"><span style="font-size: 20px;"><span style="color: #ffffff; font-size: 20px; background-color: #17b9c4;"><strong><span style="background-color: #e20030;">HORARIO:</span></strong>${ticket.startsEnds}</span></span></p>
+													<p style="font-size: 20px; line-height: 2; word-break: break-word; text-align: left; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 40px; margin: 0;"><span style="font-size: 20px; background-color: #e20030;"><span style="font-size: 20px; background-color: #e20030;">&nbsp;</span><span style="color: #ffffff; font-size: 20px; background-color: #e20030;"><strong>LUGAR DE COMPRA:&nbsp;</strong></span>${ticket.place}</span></p>
+													<p style="font-size: 20px; line-height: 2; word-break: break-word; text-align: left; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 40px; margin: 0;"><span style="font-size: 20px; background-color: #e20030;"><span style="color: #ffffff; font-size: 20px; background-color: #e20030;">DISTRITO:&nbsp;</span>${ticket.district}</span></p>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
@@ -240,7 +250,7 @@ export const html: string = `
 											<!--<![endif]-->
 											<div class="img-container center  autowidth  fullwidth" align="center" style="padding-right: 10px;padding-left: 10px;">
 												<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 10px;padding-left: 10px;" align="center"><![endif]-->
-												<div style="font-size:1px;line-height:10px">&nbsp;</div><img class="center  autowidth  fullwidth" align="center" border="0" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/426/qrcode.png" alt="Image" title="Image" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 173px; display: block;" width="173">
+												<div style="font-size:1px;line-height:10px">&nbsp;</div><img class="center  autowidth  fullwidth" align="center" border="0" src="${ticket.qr}" alt="Image" title="Image" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 173px; display: block;" width="173">
 												<div style="font-size:1px;line-height:10px">&nbsp;</div>
 												<!--[if mso]></td></tr></table><![endif]-->
 											</div>
@@ -414,3 +424,5 @@ export const html: string = `
 
 </html>
 `;
+  }
+}

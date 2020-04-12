@@ -1,21 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { MailgunService, EmailOptions } from '@nextnm/nestjs-mailgun';
-import { html } from './templates/ticket.html';
+import { MailgunService } from '@nextnm/nestjs-mailgun';
+import { Mailable } from './interfaces/mail.interface';
 
 @Injectable()
 export class MailService {
-  mailgunOptions: EmailOptions;
-  constructor(private mailgunService: MailgunService) {
-    this.mailgunOptions = {
-      from: 'hello@renatocenteno.com',
-      to: 'racodeveloper@gmail.com',
-      subject: 'prueba',
-      text: 'testo',
-      html: html,
-    };
-  }
+  constructor(private mailgunService: MailgunService) {}
 
-  sendEmail(): Promise<boolean> {
-    return this.mailgunService.sendEmail(this.mailgunOptions);
+  sendEmail(email: Mailable): Promise<boolean> {
+    return this.mailgunService.sendEmail(email);
   }
 }

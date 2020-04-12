@@ -17,6 +17,18 @@ export class Ticket extends BaseEntity {
   @Column()
   salt: string;
 
+  @Column()
+  startsEnds: string;
+
+  @Column()
+  place: string;
+
+  @Column()
+  district: string;
+
+  @Column('text')
+  qr: string;
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',

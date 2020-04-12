@@ -42,4 +42,12 @@ export class Turn extends BaseEntity {
     { eager: false },
   )
   tickets: Ticket[];
+
+  startsEnds(): string {
+    return `${this.startsAt} - ${this.endsAt}`;
+  }
+
+  place(): string {
+    return this.schedule.branch.name;
+  }
 }
