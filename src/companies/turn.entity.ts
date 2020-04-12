@@ -36,6 +36,9 @@ export class Turn extends BaseEntity {
   )
   schedule: Schedule;
 
+  @Column()
+  scheduleId: number;
+
   @OneToMany(
     type => Ticket,
     ticket => ticket.turn,

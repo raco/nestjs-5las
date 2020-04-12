@@ -1,4 +1,9 @@
-import { Repository, EntityRepository, getManager } from 'typeorm';
+import {
+  Repository,
+  EntityRepository,
+  getManager,
+  getConnection,
+} from 'typeorm';
 import * as QRCode from 'qrcode';
 import * as bcrypt from 'bcrypt';
 import { Ticket } from './ticket.entity';
@@ -8,6 +13,7 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { Schedule } from 'src/companies/schedule.entity';
 
 @EntityRepository(Ticket)
 export class TicketRepository extends Repository<Ticket> {
@@ -15,7 +21,13 @@ export class TicketRepository extends Repository<Ticket> {
     const ticket = new Ticket();
     ticket.user = user;
     ticket.startsEnds = turn.startsEnds();
-    ticket.place = turn.place();
+    const connection = getConnection();
+    const scheduleRepository = connection.getRepository(Schedule);
+    const schedule = await scheduleRepository.findOne({
+      where: { id: turn.scheduleId },
+      relations: ['branch'],
+    });
+    ticket.place = schedule.branch.name;
     const distict = await getManager().query(
       `SELECT name FROM ubigeo_peru_districts WHERE id = ${user.district_id}`,
     );

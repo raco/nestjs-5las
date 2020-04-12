@@ -29,6 +29,9 @@ export class Schedule extends BaseEntity {
   @Column('date')
   createdAt: string;
 
+  @Column()
+  branchId: number;
+
   @ManyToOne(
     type => Branch,
     branch => branch.schedules,
