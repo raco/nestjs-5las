@@ -7,6 +7,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserRepository } from './user.repository';
 import { JwtStrategy } from './jwt.strategy';
+import { SharedModule } from 'src/shared/shared.module';
 
 @Module({
   imports: [
@@ -18,9 +19,10 @@ import { JwtStrategy } from './jwt.strategy';
       },
     }),
     TypeOrmModule.forFeature([UserRepository]),
+    SharedModule
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService],
   exports: [JwtStrategy, PassportModule],
 })
-export class AuthModule {}
+export class AuthModule { }

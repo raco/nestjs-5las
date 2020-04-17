@@ -14,7 +14,7 @@ export class AuthCredentialsDto {
   email: string;
 
   @IsString()
-  @MinLength(8)
+  @MinLength(6)
   @MaxLength(40)
   password: string; // Mayuscula, numero y caracterespecial
 }

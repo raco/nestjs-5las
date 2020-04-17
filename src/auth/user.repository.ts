@@ -2,12 +2,16 @@ import { Repository, EntityRepository } from 'typeorm';
 import {
   ConflictException,
   InternalServerErrorException,
+  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 import { UserRegisterDto } from './dto/user-register.dto';
 import { AuthCredentialsDto } from './dto/auth-crendentials.dto';
 import { User } from './user.entity';
+import { RecoverPasswordDto } from './dto/recover-password.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -51,7 +55,24 @@ export class UserRepository extends Repository<User> {
     return null;
   }
 
+  async resetPassword(resetPasswordDto: ResetPasswordDto): Promise<void> {
+    const { password, token } = resetPasswordDto;
+    const user = await this.findOne({ salt: token });
+
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
+    try {
+      user.password = password;
+      this.save(user);
+    } catch (error) {
+      throw new InternalServerErrorException('Ocurrió un error al actualizar los datos.');
+    }
+  }
+
   private async hashPassword(password: string, salt: string) {
     return bcrypt.hash(password, salt);
   }
+
 }

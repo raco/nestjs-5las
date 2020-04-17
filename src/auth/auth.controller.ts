@@ -2,11 +2,12 @@ import { Controller, Post, Body, ValidationPipe, Get } from '@nestjs/common';
 import { UserRegisterDto } from './dto/user-register.dto';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-crendentials.dto';
-import { getManager } from 'typeorm';
+import { RecoverPasswordDto } from './dto/recover-password.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   @Post('/signup')
   signUp(
@@ -21,4 +22,20 @@ export class AuthController {
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(authCredentialsDto);
   }
+
+  @Post('/recover-password')
+  recoverPassword(
+    @Body(ValidationPipe) recoverPasswordDto: RecoverPasswordDto,
+  ): Promise<any> {
+    return this.authService.recoverPassword(recoverPasswordDto);
+  }
+
+  @Post('/reset-password')
+  resetPassword(
+    @Body(ValidationPipe) resetPasswordDto: ResetPasswordDto,
+  ): Promise<any> {
+    return this.authService.resetPassword(resetPasswordDto);
+  }
+
+
 }
