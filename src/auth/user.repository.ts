@@ -64,7 +64,7 @@ export class UserRepository extends Repository<User> {
     }
 
     try {
-      user.password = password;
+      user.password = await this.hashPassword(password, user.salt);
       this.save(user);
     } catch (error) {
       throw new InternalServerErrorException('Ocurrió un error al actualizar los datos.');
