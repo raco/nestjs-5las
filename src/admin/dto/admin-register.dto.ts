@@ -66,4 +66,7 @@ export class AdminRegisterDto {
     @MinLength(4)
     @MaxLength(200)
     branch_lng: string;
+
+    @IsNumber()
+    branch_district_id: number;
 }

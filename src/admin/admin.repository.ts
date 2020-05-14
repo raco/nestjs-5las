@@ -28,7 +28,8 @@ export class AdminRepository extends Repository<Admin> {
             branch_name,
             branch_address,
             branch_lat,
-            branch_lng
+            branch_lng,
+            branch_district_id
         } = adminRegisterDto;
 
         const admin = new Admin();
@@ -50,6 +51,7 @@ export class AdminRepository extends Repository<Admin> {
         branch.lat = branch_lat;
         branch.lng = branch_lng;
         branch.company = company;
+        branch.district_id = branch_district_id;
 
         const connection = getConnection();
         const companyRepository = connection.getRepository(Company);
