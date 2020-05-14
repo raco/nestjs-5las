@@ -28,16 +28,14 @@ export class AuthService {
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string }> {
-    const user = await this.userRepository.validateUserPassword(
-      authCredentialsDto,
-    );
+    const user = await this.userRepository.validateUserPassword(authCredentialsDto);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
     const entityManager = getManager();
     const rawData = await entityManager.query(
-      `SELECT id, name FROM ubigeo_peru_districts WHERE id = ${user.district_id}`,
+      `SELECT id, name FROM ubigeo_peru_districts WHERE id = ${user.district_id}`
     );
 
     const payload: JwtPayload = {

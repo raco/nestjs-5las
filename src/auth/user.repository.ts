@@ -2,7 +2,6 @@ import { Repository, EntityRepository } from 'typeorm';
 import {
   ConflictException,
   InternalServerErrorException,
-  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
@@ -10,7 +9,6 @@ import * as bcrypt from 'bcrypt';
 import { UserRegisterDto } from './dto/user-register.dto';
 import { AuthCredentialsDto } from './dto/auth-crendentials.dto';
 import { User } from './user.entity';
-import { RecoverPasswordDto } from './dto/recover-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @EntityRepository(User)
