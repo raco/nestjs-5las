@@ -37,7 +37,7 @@ export class Admin extends BaseEntity {
     @OneToMany(
         type => Company,
         company => company.admin,
-        { eager: true },
+        { eager: false },
     )
     companies: Company[];
 
