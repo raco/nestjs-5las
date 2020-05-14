@@ -23,10 +23,10 @@ export class Company extends BaseEntity {
   @Column()
   ruc: string;
 
-  @Column()
-  logo_url: string;
+  @Column({ nullable: true })
+  logo_url: string | null;
 
-  @Column()
+  @Column({ default: true })
   available: boolean;
 
   @OneToMany(

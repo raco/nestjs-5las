@@ -9,6 +9,8 @@ import { RecoverPasswordMail } from 'src/shared/mail/templates/recover-password.
 import { MailService } from 'src/shared/mail/mail.service';
 import { AdminRegisterDto } from './dto/admin-register.dto';
 import { AdminRepository } from './admin.repository';
+import { SignInDto } from './dto/signin.dt';
+import { JwtPayload } from './jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -23,29 +25,23 @@ export class AuthService {
     return this.adminRepository.signUp(adminRegisterDto);
   }
 
-  // async signIn(
-  //   authCredentialsDto: AuthCredentialsDto,
-  // ): Promise<{ accessToken: string }> {
-  //   const user = await this.userRepository.validateUserPassword(authCredentialsDto);
-  //   if (!user) {
-  //     throw new UnauthorizedException('Invalid credentials');
-  //   }
+  async signIn(
+    signInDto: SignInDto,
+  ): Promise<{ accessToken: string }> {
+    const admin = await this.adminRepository.validateAdminPassword(signInDto);
+    if (!admin) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+    const payload: JwtPayload = {
+      dni: admin.dni,
+      email: admin.email,
+      fullname: admin.fullname,
+      phone: admin.phone,
+    };
+    const accessToken = await this.jwtService.sign(payload);
 
-  //   const entityManager = getManager();
-  //   const rawData = await entityManager.query(
-  //     `SELECT id, name FROM ubigeo_peru_districts WHERE id = ${user.district_id}`
-  //   );
-
-  //   const payload: JwtPayload = {
-  //     dni: user.dni,
-  //     email: user.email,
-  //     fullname: user.fullname,
-  //     district: rawData[0],
-  //   };
-  //   const accessToken = await this.jwtService.sign(payload);
-
-  //   return { accessToken };
-  // }
+    return { accessToken };
+  }
 
   // async recoverPassword(recoverPasswordDto: RecoverPasswordDto): Promise<void> {
   //   const user = await this.userRepository.findOne({ email: recoverPasswordDto.email });

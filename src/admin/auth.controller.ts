@@ -1,6 +1,7 @@
 import { Controller, Post, Body, ValidationPipe, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AdminRegisterDto } from './dto/admin-register.dto';
+import { SignInDto } from './dto/signin.dt';
 
 @Controller('admin/auth')
 export class AuthController {
@@ -13,12 +14,12 @@ export class AuthController {
     return this.authService.signUp(adminRegisterDto);
   }
 
-  // @Post('/signin')
-  // signIn(
-  //   @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
-  // ): Promise<{ accessToken: string }> {
-  //   return this.authService.signIn(authCredentialsDto);
-  // }
+  @Post('/signin')
+  signIn(
+    @Body(ValidationPipe) signInDto: SignInDto,
+  ): Promise<{ accessToken: string }> {
+    return this.authService.signIn(signInDto);
+  }
 
   // @Post('/recover-password')
   // recoverPassword(

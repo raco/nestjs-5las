@@ -11,6 +11,7 @@ import { AdminRegisterDto } from './dto/admin-register.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { Admin } from './admin.entity';
 import { Company } from 'src/companies/company.entity';
+import { SignInDto } from './dto/signin.dt';
 
 @EntityRepository(Admin)
 export class AdminRepository extends Repository<Admin> {
@@ -49,17 +50,17 @@ export class AdminRepository extends Repository<Admin> {
         }
     }
 
-    // async validateUserPassword(
-    //     authCredentialsDto: AuthCredentialsDto,
-    // ): Promise<User> {
-    //     const { email, password } = authCredentialsDto;
-    //     const user = await this.findOne({ email });
+    async validateAdminPassword(
+        signInDto: SignInDto,
+    ): Promise<Admin> {
+        const { email, password } = signInDto;
+        const admin = await this.findOne({ email });
 
-    //     if (user && (await user.validatePassword(password))) {
-    //         return user;
-    //     }
-    //     return null;
-    // }
+        if (admin && (await admin.validatePassword(password))) {
+            return admin;
+        }
+        return null;
+    }
 
     // async resetPassword(resetPasswordDto: ResetPasswordDto): Promise<void> {
     //     const { password, token } = resetPasswordDto;
