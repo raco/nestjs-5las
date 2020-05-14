@@ -39,11 +39,11 @@ export class AdminRegisterDto {
     password: string; // Mayuscula, numero y caracterespecial
 
 
-    // @Length(11)
-    // ruc: string;
+    @Length(11)
+    ruc: string;
 
-    // @IsString()
-    // @MinLength(4)
-    // @MaxLength(200)
-    // business_name: string;
+    @IsString()
+    @MinLength(4)
+    @MaxLength(200)
+    business_name: string;
 }

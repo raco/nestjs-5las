@@ -42,7 +42,7 @@ export class AdminRepository extends Repository<Admin> {
         // const companyRepository = connection.getRepository(Company);
 
         try {
-            await admin.save();
+            // await admin.save();
             // await companyRepository.save(company);
         } catch (error) {
             throw new error;
