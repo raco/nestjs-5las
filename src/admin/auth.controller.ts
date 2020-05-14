@@ -9,8 +9,9 @@ export class AuthController {
   @Post('/signup')
   signUp(
     @Body(ValidationPipe) adminRegisterDto: AdminRegisterDto,
-  ): Promise<void> {
-    return this.authService.signUp(adminRegisterDto);
+  ): any {
+    return "hola";
+    // return this.authService.signUp(adminRegisterDto);
   }
 
   // @Post('/signin')
