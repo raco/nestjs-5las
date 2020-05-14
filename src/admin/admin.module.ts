@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserRepository } from 'src/auth/user.repository';
 import { SharedModule } from 'src/shared/shared.module';
 import { JwtStrategy } from 'src/auth/jwt.strategy';
 import { AuthService } from 'src/auth/auth.service';
 import { AuthController } from './auth.controller';
+import { AdminRepository } from './admin.repository';
 
 @Module({
     imports: [
@@ -17,7 +17,7 @@ import { AuthController } from './auth.controller';
                 expiresIn: 3600 * 24 * 7,
             },
         }),
-        TypeOrmModule.forFeature([UserRepository]),
+        TypeOrmModule.forFeature([AdminRepository]),
         SharedModule
     ],
     controllers: [AuthController],
