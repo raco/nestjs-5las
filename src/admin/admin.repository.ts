@@ -45,7 +45,8 @@ export class AdminRepository extends Repository<Admin> {
             await admin.save();
             // await companyRepository.save(company);
         } catch (error) {
-            throw new ConflictException('Datos ingresados son incorrectos.');
+            throw new error;
+            // throw new ConflictException('Datos ingresados son incorrectos.');
         }
     }
 
