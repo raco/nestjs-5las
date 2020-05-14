@@ -33,17 +33,17 @@ export class AdminRepository extends Repository<Admin> {
         admin.salt = await bcrypt.genSalt();
         admin.password = await this.hashPassword(password, admin.salt);
 
-        const company = new Company();
-        company.name = business_name;
-        company.ruc = ruc;
-        company.admin = admin;
+        // const company = new Company();
+        // company.name = business_name;
+        // company.ruc = ruc;
+        // company.admin = admin;
 
-        const connection = getConnection();
-        const companyRepository = connection.getRepository(Company);
+        // const connection = getConnection();
+        // const companyRepository = connection.getRepository(Company);
 
         try {
             await admin.save();
-            await companyRepository.save(company);
+            // await companyRepository.save(company);
         } catch (error) {
             throw new ConflictException('Datos ingresados son incorrectos.');
         }
