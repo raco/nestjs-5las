@@ -2,7 +2,7 @@ db:
   host: 'localhost'
   username: 'forge'
   password: 'jjW3O0AJjzDtY4HgmIfv'
-  synchronize: true
+  synchronize: false
 
 jwt:
   expiresIn: 3600
