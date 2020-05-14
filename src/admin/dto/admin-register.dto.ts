@@ -46,4 +46,24 @@ export class AdminRegisterDto {
     @MinLength(4)
     @MaxLength(200)
     business_name: string;
+
+    @IsString()
+    @MinLength(4)
+    @MaxLength(200)
+    branch_name: string;
+
+    @IsString()
+    @MinLength(4)
+    @MaxLength(200)
+    branch_address: string;
+
+    @IsString()
+    @MinLength(4)
+    @MaxLength(200)
+    branch_lat: string;
+
+    @IsString()
+    @MinLength(4)
+    @MaxLength(200)
+    branch_lng: string;
 }

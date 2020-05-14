@@ -26,13 +26,13 @@ export class Branch extends BaseEntity {
   @Column()
   lng: string;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
   @Column()
   district_id: number;
 
-  @Column()
+  @Column({ default: true })
   open: boolean;
 
   @ManyToOne(

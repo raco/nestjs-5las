@@ -12,6 +12,7 @@ import { ResetPasswordDto } from './dto/reset-password.dto';
 import { Admin } from './admin.entity';
 import { Company } from 'src/companies/company.entity';
 import { SignInDto } from './dto/signin.dt';
+import { Branch } from 'src/companies/branch.entity';
 
 @EntityRepository(Admin)
 export class AdminRepository extends Repository<Admin> {
@@ -23,7 +24,11 @@ export class AdminRepository extends Repository<Admin> {
             email,
             password,
             ruc,
-            business_name
+            business_name,
+            branch_name,
+            branch_address,
+            branch_lat,
+            branch_lng
         } = adminRegisterDto;
 
         const admin = new Admin();
@@ -39,12 +44,21 @@ export class AdminRepository extends Repository<Admin> {
         company.ruc = ruc;
         company.admin = admin;
 
+        const branch = new Branch();
+        branch.name = branch_name;
+        branch.address = branch_address;
+        branch.lat = branch_lat;
+        branch.lng = branch_lng;
+        branch.company = company;
+
         const connection = getConnection();
         const companyRepository = connection.getRepository(Company);
+        const branchRepository = connection.getRepository(Branch);
 
         try {
             await admin.save();
             await companyRepository.save(company);
+            await branchRepository.save(branch);
         } catch (error) {
             throw new ConflictException('Datos ingresados son incorrectos.');
         }
